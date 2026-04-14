@@ -3,8 +3,11 @@
 ## Quy tắc nghiệp vụ (Business Rules)
 
 BR-01:Tồn kho thực tế,Khách hàng không thể thêm số lượng sản phẩm lớn hơn số lượng hiện có trong kho.
+
 BR-02:Cập nhật giá,Giá sản phẩm trong giỏ hàng phải được cập nhật theo giá niêm yết mới nhất của hệ thống tại thời điểm xem giỏ.
+
 BR-03:Sản phẩm trùng,"Nếu thêm sản phẩm đã có trong giỏ, hệ thống chỉ tăng số lượng (quantity) thay vì tạo dòng mới."
+
 BR-04:Trạng thái hết hàng,"Nếu sản phẩm trong giỏ bị hết hàng trong kho, hệ thống phải ngăn chặn hành vi thanh toán (Checkout)."
 
 ## 1. Chức năng: Thêm vào giỏ hàng (Add to Cart)
