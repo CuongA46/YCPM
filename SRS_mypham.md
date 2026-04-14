@@ -3,19 +3,6 @@
 ## 1. Giới thiệu
 Tài liệu mô tả hệ thống website bán mỹ phẩm online, bao gồm các chức năng giỏ hàng, giúp người dùng lựa chọn và mua sản phẩm.
 
----
-
-## 2. Unhappy Paths
-
-| Tình huống | Thông báo lỗi | Hành vi |
-|-----------|--------------|--------|
-| Sản phẩm không tồn tại | "Sản phẩm không tồn tại" | Không thêm vào giỏ |
-| Sản phẩm hết hàng | "Sản phẩm đã hết hàng" | Chặn thêm |
-| Số lượng không hợp lệ | "Số lượng không hợp lệ" | Không xử lý |
-| Lỗi hệ thống | "Vui lòng thử lại sau" | Không hiển thị dữ liệu |
-
----
-
 ## 3. Chức năng: Thêm vào giỏ hàng
 
 ### Scenario 1: Thêm sản phẩm thành công
@@ -79,19 +66,3 @@ THEN     hiển thị trạng thái "Hết hàng"
 AND      không cho phép thanh toán
 ```
 
-### Scenario 8: Lỗi tải giỏ hàng
-```
-GIVEN    hệ thống lỗi server
-WHEN     người dùng mở giỏ hàng
-THEN     không hiển thị dữ liệu
-AND      hiển thị "Không thể tải giỏ hàng"
-```
-
----
-
-## 5. Gợi ý mở rộng hệ thống
-
-- Lưu giỏ hàng bằng Local Storage
-- Đồng bộ giỏ hàng khi đăng nhập
-- API backend (RESTful)
-- Kết nối database (MySQL / MongoDB)
