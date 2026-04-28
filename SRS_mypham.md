@@ -117,3 +117,80 @@ THEN     hiển thị trạng thái "Hết hàng"
 AND      không cho phép thanh toán
 ```
 
+## 3. Chức năng: Áp dụng Voucher (Apply Voucher)
+
+### Acceptance Criteria (AC) - Tiêu chí chấp nhận
+```
+Chức năng: Áp dụng Voucher
+AC 1: Người dùng có thể nhập mã voucher vào ô "Mã giảm giá".
+AC 2: Nếu voucher hợp lệ, hệ thống phải áp dụng giảm giá đúng theo giá trị (%, hoặc số tiền cố định).
+AC 3: Tổng tiền thanh toán phải được cập nhật sau khi áp dụng voucher.
+AC 4: Nếu voucher không hợp lệ hoặc hết hạn, hệ thống phải hiển thị thông báo lỗi.
+AC 5: Một đơn hàng chỉ được áp dụng 1 voucher tại một thời điểm.
+```
+
+### User Story
+```
+"Là một Khách hàng, tôi muốn nhập mã giảm giá để được giảm giá trên tổng đơn hàng trước khi thanh toán."
+```
+
+### Đặc tả
+```
+Cho phép người dùng nhập và áp dụng mã voucher để giảm giá đơn hàng.
+
+Dữ liệu đầu vào (Inputs): 
+- Mã voucher người dùng nhập
+- Tổng tiền đơn hàng hiện tại
+Luồng xử lý (Processing):
+- Kiểm tra voucher có tồn tại không
+- Kiểm tra còn hạn sử dụng
+- Kiểm tra điều kiện áp dụng (ví dụ: đơn hàng tối thiểu)
+- Tính toán giá trị giảm
+Kết quả đầu ra (Outputs):
+- Tổng tiền mới sau khi áp dụng voucher
+- Thông báo thành công hoặc lỗi
+```
+
+### Scenario 8: Áp dụng voucher thành công (Happy path)
+```
+GIVEN    tổng tiền giỏ hàng là 500000 VND
+AND      voucher "SALE10" giảm 10%
+WHEN     người dùng nhập mã "SALE10" và áp dụng
+THEN     hệ thống áp dụng giảm giá 10%
+AND      tổng tiền mới = 450000 VND
+```
+
+---
+
+### Scenario 9: Voucher không tồn tại (Unhappy path)
+```
+GIVEN    người dùng nhập mã "ABC123"
+WHEN     hệ thống kiểm tra
+THEN     không tìm thấy voucher
+AND      hiển thị "Voucher không hợp lệ"
+```
+
+### Scenario 10: Voucher hết hạn (Unhappy path)
+```
+GIVEN    voucher "SALE20" đã hết hạn
+WHEN     người dùng áp dụng voucher
+THEN     hệ thống từ chối
+AND      hiển thị "Voucher đã hết hạn"
+```
+
+### Scenario 11: Không đủ điều kiện áp dụng (Unhappy path)
+```
+GIVEN    voucher yêu cầu đơn hàng tối thiểu 300000 VND
+AND      tổng tiền hiện tại là 200000 VND
+WHEN     người dùng áp dụng voucher
+THEN     không áp dụng
+AND      hiển thị "Không đủ điều kiện áp dụng"
+```
+
+### Scenario 12: Áp dụng nhiều voucher (Unhappy path)
+```
+GIVEN    giỏ hàng đã áp dụng 1 voucher
+WHEN     người dùng nhập thêm voucher khác
+THEN     hệ thống từ chối
+AND      hiển thị "Chỉ được sử dụng 1 voucher"
+```
