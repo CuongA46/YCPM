@@ -10,6 +10,10 @@ BR-03:Sản phẩm trùng,"Nếu thêm sản phẩm đã có trong giỏ, hệ t
 
 BR-04:Trạng thái hết hàng,"Nếu sản phẩm trong giỏ bị hết hàng trong kho, hệ thống phải ngăn chặn hành vi thanh toán (Checkout)."
 
+BR-05:Điều kiện đơn hàng,"Voucher chỉ được áp dụng khi tổng giá trị đơn hàng đạt mức tối thiểu theo quy định."
+
+BR-06:Giới hạn giảm giá,"Nếu voucher là dạng phần trăm (%), số tiền giảm không được vượt quá mức giảm tối đa (max discount) của voucher."
+
 ## 1. Chức năng: Thêm vào giỏ hàng (Add to Cart)
 
 ### Acceptance Criteria (AC) - Tiêu chí chấp nhận
